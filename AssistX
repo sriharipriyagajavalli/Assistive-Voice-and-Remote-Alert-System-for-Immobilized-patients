@@ -1,1 +1,56 @@
 Assistive Voice and Remote Alert System for Immobilized Patients
+
+import serial
+import pyttsx3
+import time
+import requests
+
+# ---------------- TELEGRAM CONFIG ----------------
+BOT_TOKEN = "7608120087:AAHBIJpK680i8ai8QFF-w2BO1kXLjkBYbgU"
+CHAT_ID = "7604829538"
+
+def send_telegram(msg):
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    data = {"chat_id": CHAT_ID, "text": msg}
+    try:
+        requests.post(url, data=data, timeout=3)
+    except:
+        print("Telegram send failed")
+
+# ---------------- TTS FUNCTION ----------------
+def speak(message):
+    print("Speaking:", message)
+    engine = pyttsx3.init()
+    engine.setProperty('rate', 165)
+    engine.setProperty('volume', 1.0)
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[0].id)
+    engine.say(message)
+    engine.runAndWait()
+    engine.stop()
+
+# ---------------- SERIAL ----------------
+ser = serial.Serial('COM3', 9600)
+
+# ---------------- MAIN LOOP ----------------
+while True:
+    if ser.in_waiting > 0:
+        data = ser.readline().decode().strip()
+
+        if data == "MEDICINE":
+            speak("I need medicine, please help me.")
+            send_telegram("ALERT: Patient requested MEDICINE.")
+
+        elif data == "DOCTOR":
+            speak("Please call the doctor immediately.")
+            send_telegram("ALERT: Doctor needed urgently.")
+
+        elif data == "PAIN":
+            speak("I am in pain, please help me.")
+            send_telegram("ALERT: Patient is in PAIN.")
+
+        elif data == "FAMILY":
+            speak("Please call my family.")
+            send_telegram("ALERT: Patient requested FAMILY contact.")
+
+    time.sleep(0.2)
