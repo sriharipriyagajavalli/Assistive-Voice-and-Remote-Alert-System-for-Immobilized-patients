@@ -1,10 +1,10 @@
-Assistive Voice and Remote Alert System for Immobilized Patients
+**Assistive Voice and Remote Alert System for Immobilized Patients**
 
-OVRVIEW:
+**OVERVIEW:**
 
 This project provides an assistive voice interface for immobilized patients, enabling them to communicate simple commands through voice input. It also includes a remote alert system to notify caregivers or family members via mobile notifications when assistance is required. The system aims to improve patient safety, independence, and response time in emergency situations.
 
-FEATURES:
+**FEATURES:**
 
 -Voice Command Recognition: Patients can trigger alerts using simple voice commands.
 
@@ -14,7 +14,7 @@ FEATURES:
 
 -IoT-Enabled: Optionally integrates with IoT devices for smart home or hospital settings.
 
-REQUIREMENTS:
+**REQUIREMENTS:**
 
 ->Programming Languages: Python
 
@@ -25,7 +25,7 @@ REQUIREMENTS:
 ->Optional Hardware: Microcontroller (Arduino/Raspberry Pi) for sensor integration.
 
 
-FUTURE ENHANCEMENTS:
+**FUTURE ENHANCEMENTS:**
 
 -Integrate multiple languages for voice recognition
 
